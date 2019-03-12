@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Task_Manager_Project
 {
-    class Program
+    class app
     {
-        static void Main(string[] args)
+        
         {
         }
     }

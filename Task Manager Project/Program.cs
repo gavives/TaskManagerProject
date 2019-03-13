@@ -9,19 +9,47 @@ namespace Task_Manager_Project
 {
     class App
     {
+        private List<string> taskList;
+
+        public App()
+        {
+            taskList = ReadListFromFile();
+        }
+
         public void Run()
         {
-            List<string> taskList = ReadListFromFile();
-            PrintTaskList(taskList);
+            var quit = false;
+
+            do
+            {
+                PrintTaskList();
+                InputTaskToList();
+            } while (!quit);
+
+            WriteListToFile();
+
+            
             
 
         }
 
-        private void PrintTaskList(List<string> taskList)
+
+        private void InputTaskToList()
+        {
+            Console.Write("Add a new task:");
+
+            var input = Console.ReadLine();
+            taskList.Add(input);
+        }
+
+        private void PrintTaskList()
         {
             foreach (var t in taskList)
-
+            {
                 Console.WriteLine(t);
+            }
+
+            Console.WriteLine();
         }
 
         private List<string> ReadListFromFile()
@@ -41,6 +69,17 @@ namespace Task_Manager_Project
             { ; }
 
             return taskList;
+        }
+
+        private void WriteListToFile()
+        {
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\Default\Documents\TaskManager.txt"))
+            {
+                foreach (var t in taskList)
+                {
+                    sw.WriteLine(t);
+                }
+            }
         }
             
     }

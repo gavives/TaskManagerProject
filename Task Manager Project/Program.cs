@@ -7,80 +7,16 @@ using System.Threading.Tasks;
 
 namespace Task_Manager_Project
 {
-    class App
+    class Program
     {
-        private List<string> taskList;
-
-        public App()
+        static void Main(string[] args)
         {
-            taskList = ReadListFromFile();
+            new App().Run();
         }
 
-        public void Run()
-        {
-            var quit = false;
-
-            do
-            {
-                PrintTaskList();
-                InputTaskToList();
-            } while (!quit);
-
-            WriteListToFile();
-
-            
-            
-
-        }
-
-
-        private void InputTaskToList()
-        {
-            Console.Write("Add a new task:");
-
-            var input = Console.ReadLine();
-            taskList.Add(input);
-        }
-
-        private void PrintTaskList()
-        {
-            foreach (var t in taskList)
-            {
-                Console.WriteLine(t);
-            }
-
-            Console.WriteLine();
-        }
-
-        private List<string> ReadListFromFile()
-        {
-            var taskList = new List<string>();
-
-            try
-            {
-
-                using (StreamReader sr = new StreamReader(@"C:\Users\Default\Documents\TaskManager.txt"))
-                {
-                    var input = sr.ReadLine();
-                    taskList.Add(input);
-                }
-            }
-            catch (FileNotFoundException)
-            { ; }
-
-            return taskList;
-        }
-
-        private void WriteListToFile()
-        {
-            using (StreamWriter sw = new StreamWriter(@"C:\Users\Default\Documents\TaskManager.txt"))
-            {
-                foreach (var t in taskList)
-                {
-                    sw.WriteLine(t);
-                }
-            }
-        }
-            
     }
+        
+    
+            
+    
 }

@@ -121,8 +121,16 @@ namespace Task_Manager_Project
                     while (!sr.EndOfStream)
                     {
                         var input = sr.ReadLine();
-                        tasks.Add(input);
-                        isActioned.Add(false);
+
+                        var splits = input.Split(new Char[] { '\x1e' });
+
+                        if (splits.Length == 2)
+                        {
+                            tasks.Add(splits[0]);
+                            isActioned.Add(bool.Parse(splits[1]));
+                        }
+
+                        
 
                     }
                 }
@@ -148,5 +156,5 @@ namespace Task_Manager_Project
                 
         }
 
-    }
+    
 
